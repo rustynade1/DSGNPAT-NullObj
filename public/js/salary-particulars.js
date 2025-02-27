@@ -31,13 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
         
             async function getEmployeeDetails(employeeId) {
                 try {
-                    const response = await fetch(`/api/employees/${employeeId}`);
+                    const response = await fetch(`/employees/${employeeId}`);
                     if (!response.ok) throw new Error("Employee not found");
                     return await response.json();
                 } catch (error) {
                     console.warn("USING NULL EMPLOYEE:", error.message);
                     
-                    const nullEmployeeResponse = await fetch(`/api/employees/null`);
+                    const nullEmployeeResponse = await fetch(`/employees/null`);
                     return await nullEmployeeResponse.json();
                 }
             }

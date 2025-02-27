@@ -137,6 +137,22 @@ app.get('/admin_retrieve_employee_total_sp', admin_salary_particulars_controller
 app.get('/admin_salary_particulars_employee', admin_salary_particulars_controllers.get_salary_particulars_employee);
 app.post('/admin_print_salary_particulars', admin_salary_particulars_controllers.post_print_salary_particulars);
 
+
+app.get('/employees/:id', async (req, res) => {
+    try {
+        const e = await employee.findById(req.params.id);
+        res.json(e || employee.getNullEmployee());
+    } catch (error) {
+        console.warn("Error fetching employee, returning null:", error.message);
+        res.json(employee.getNullEmployee());
+    }
+});
+
+app.get('/employees/null', (req, res) => {
+    res.json(employee.getNullEmployee());
+});
+
+
 module.exports = app;
 
 //get_salary_particulars_details
