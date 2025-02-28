@@ -73,9 +73,22 @@ function dropdown(){
             event.preventDefault();
 
             const salarySlip = document.getElementById('salary-slip');
-            document.getElementById('employee-name')?.innerText = employee.First_Name || NullEmployee.First_Name;
-            document.getElementById('employee-email')?.innerText = employee.Email || NullEmployee.Email;
-            document.getElementById('employee-type')?.innerText = employee.Employee_Type || NullEmployee.Employee_Type;
+        // // Read existing values from the DOM
+        const nameElement = document.getElementById("employee-name");
+        const emailElement = document.getElementById("employee-email");
+        const typeElement = document.getElementById("employee-type");
+
+         // Check if values are missing or empty
+         if (!nameElement.innerText.trim()) {
+            nameElement.innerText = `${NullEmployee.First_Name} ${NullEmployee.Last_Name}`;
+        }
+        if (!emailElement.innerText.trim()) {
+            emailElement.innerText = NullEmployee.Email;
+        }
+        if (!typeElement.innerText.trim()) {
+            typeElement.innerText = NullEmployee.Employee_Type;
+        }       
+
 
             if (salarySlip) {
                 const printWindow = window.open('', '', 'height=600,width=800');
