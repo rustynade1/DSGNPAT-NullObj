@@ -137,6 +137,7 @@ app.get('/admin_retrieve_employee_total_sp', admin_salary_particulars_controller
 app.get('/admin_salary_particulars_employee', admin_salary_particulars_controllers.get_salary_particulars_employee);
 app.post('/admin_print_salary_particulars', admin_salary_particulars_controllers.post_print_salary_particulars);
 
+app.get('/null-employee', employee_salary_particulars_controllers.get_null_employee);
 module.exports = app;
 
 //get_salary_particulars_details

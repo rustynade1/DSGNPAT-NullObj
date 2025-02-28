@@ -204,6 +204,23 @@ const employee_salary_particulars_controllers = {
             console.error("Error processing employee details: ", error);
             res.status(500).send("Internal Server Error!");
         }
+    },
+
+
+    get_null_employee: async function(req, res){
+        //debug console
+        console.log("GET /null-employee");
+        const NullEmployee = {
+            First_Name: "Unknown",
+            Last_Name: "Employee",
+            Contact_Number: "N/A",
+            Email: "N/A",
+            Address: "N/A",
+            Employee_Type: "Unassigned",
+            IsTimedIn: false
+        };
+
+        res.json(NullEmployee);
     }
 }
 

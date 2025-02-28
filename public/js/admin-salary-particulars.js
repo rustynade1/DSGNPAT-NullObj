@@ -1,6 +1,17 @@
 var curr_emp;
 
 document.addEventListener("DOMContentLoaded", function () { 
+    let NullEmployee = {};
+    fetch("/null-employee")
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+            return response.json();
+        })
+        .then(nullEmp => {
+            NullEmployee = nullEmp; // Store Null Employee object from backend
+        })
+        .catch(error => console.error("Error fetching Null Employee:", error))
+
     fetch("/admin_retrieve_employee_total_sp")
         .then(response =>{
             if (!response.ok){
@@ -62,11 +73,11 @@ function dropdown(){
             event.preventDefault();
 
             const salarySlip = document.getElementById('salary-slip');
-            const employeeNameElem = document.getElementById('employee-name');
-            const employeeEmailElem = document.getElementById('employee-email');
-            const employeeTypeElem = document.getElementById('employee-type');
+            document.getElementById('employee-name')?.innerText = employee.First_Name || NullEmployee.First_Name;
+            document.getElementById('employee-email')?.innerText = employee.Email || NullEmployee.Email;
+            document.getElementById('employee-type')?.innerText = employee.Employee_Type || NullEmployee.Employee_Type;
 
-            if (salarySlip && employeeNameElem && employeeEmailElem && employeeTypeElem) {
+            if (salarySlip) {
                 const printWindow = window.open('', '', 'height=600,width=800');
                 printWindow.document.write('<html><head><title>Salary Particulars</title>');
                 printWindow.document.write('<link rel="stylesheet" href="/css/style.css">'); // Ensure the CSS path is correct
